@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DetectX - Deepfake Video Detection & Scanner</title>
+    <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+        background-image: url("https://media.istockphoto.com/id/1625209578/photo/digital-illustration-of-data-encryption-and-artificial-intelligence-conceptual-backgrounds.jpg?s=2048x2048&w=is&k=20&c=jZxM8fMRLXdX2SV5fleg3qQ-ec4n20MLG6Gr1XQVmsQ=");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    header {
+        background: #0d0b4e;
+        color: #fff;
+        padding: 10px 0;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+
+    nav .logo h1 {
+        cursor: pointer;
+        font-size: 2rem;
+        font-family: 'Arial Black', sans-serif;
+        text-transform: uppercase;
+        color: #FFFFFF; /* Changed to black */
+        letter-spacing: 2px;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 0 15px;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        color: #ff6363;
+    }
+
+    main {
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    footer {
+        background: #0d0b4e;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 3rem;
+        color: #FFFFFF; /* Changed to black */
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        margin-bottom: 40px;
+    }
+
+    p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .section {
+        width: 45%;
+        background-color: #4b4b4b; /* Changed to gray */
+        color: #fff; /* Adjusted text color for contrast */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .input-container {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-container input[type="file"] {
+        padding: 15px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+        max-width: 80%;
+    }
+
+    .input-container input[type="file"]:hover {
+        transform: scale(1.05);
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .preview-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .preview-container video {
+        max-width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        display: none;
+    }
+
+    button {
+        background-color: #ff6363;
+        color: #fff;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #e55252;
+        transform: translateY(-5px);
+    }
+
+    .spinner {
+        display: none;
+        text-align: center;
+    }
+
+    .spinner img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .result {
+        margin-top: 20px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #FFFFFF;
+    }
+
+    @media (max-width: 768px) {
+        .section {
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DetectX</h1>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>DetectX - Your Deepfake Detection Tool</h1>
+        <p>Explore our cutting-edge deepfake detection technology that ensures media authenticity in an era where trust is paramount. Upload your videos and check their authenticity now!</p>
+
+        <div class="container">
+            <div class="section">
+                <h2>Upload Video</h2>
+                <div class="input-container">
+                    <input type="file" id="videoInput" accept="video/*" onchange="previewVideo(event)">
+                </div>
+
+                <div class="preview-container">
+                    <video id="videoPlayer" controls></video>
+                </div>
+
+                <button onclick="submitVideo()">Detect Deepfake</button>
+
+                <div class="spinner" id="videoSpinner">
+                    <img src="static/spinner1.gif" alt="Loading...">
+                </div>
+
+                <div class="result" id="detectionResult">
+                    <!-- Result will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 DetectX. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function previewVideo(event) {
+            const videoInput = document.getElementById('videoInput');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const file = videoInput.files[0];
+
+            if (file) {
+                const url = URL.createObjectURL(file);
+                videoPlayer.src = url;
+                videoPlayer.style.display = 'block';
+            }
+        }
+
+        function submitVideo() {
+            const videoInput = document.getElementById('videoInput');
+            const videoSpinner = document.getElementById('videoSpinner');
+            const detectionResult = document.getElementById('detectionResult');
+            const file = videoInput.files[0];
+
+            if (!file) {
+                alert('Please upload a video file.');
+                return;
+            }
+
+            videoSpinner.style.display = 'block';
+            detectionResult.innerHTML = '';
+
+            const formData = new FormData();
+            formData.append('video', file);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                videoSpinner.style.display = 'none';
+                const resultText = `Result: ${data.result} <br> Confidence: ${data.confidence.toFixed(2)}`;
+                detectionResult.innerHTML = resultText;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                videoSpinner.style.display = 'none';
+                detectionResult.innerHTML = 'Error processing the video.';
+            });
+        }
+    </script>
+</body>
+</html>
