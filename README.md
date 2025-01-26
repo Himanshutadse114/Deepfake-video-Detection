@@ -1,4 +1,6 @@
+# Project Overview
 
+This project named as DeepFake Video Detection,used to detect any video is deepfake or not, is a web app whose backend host a pre trained model and runs in flask. You can run this project on your local machine as well as on cloud very easily.
 
 # Environment Setup
 
